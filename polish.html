@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Avtonerker | Պոլիշ և փայլեցման միջոցներ - ավտոներկերի խանութ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f8fe;
+      color: #1a2c38;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* navbar */
+    .navbar {
+      background: #0a1c24;
+      color: white;
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-bottom: 1px solid #ffaa4455;
+    }
+
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff, #ffaa44);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      color: #ffaa44;
+      background: none;
+      -webkit-background-clip: unset;
+    }
+    .logo small {
+      font-size: 0.7rem;
+      display: block;
+      color: #bdd9e6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #ffaa44;
+    }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      background: #1e3a44;
+      padding: 8px 14px;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+    .cart-icon:hover {
+      background: #ffaa44;
+      color: #0a1c24;
+    }
+    .cart-count {
+      background: #ff6b4a;
+      border-radius: 30px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      font-weight: bold;
+    }
+    .btn-outline-light {
+      border: 1.5px solid #ffaa44;
+      padding: 7px 20px;
+      border-radius: 40px;
+      background: transparent;
+      color: #ffaa44;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-outline-light:hover {
+      background: #ffaa44;
+      color: #0f2c39;
+      transform: scale(0.97);
+    }
+
+    /* hero section */
+    .polish-hero {
+      background: linear-gradient(115deg, #1f5e6e 0%, #12404b 100%);
+      color: white;
+      padding: 55px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .polish-hero::after {
+      content: "✨";
+      font-size: 180px;
+      opacity: 0.08;
+      position: absolute;
+      bottom: -30px;
+      right: 0px;
+      pointer-events: none;
+    }
+    .polish-hero h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .polish-hero p {
+      font-size: 1.15rem;
+      max-width: 620px;
+      margin: 0 auto 20px;
+      opacity: 0.9;
+    }
+    .search-bar {
+      background: white;
+      border-radius: 60px;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 4px 4px 4px 24px;
+      gap: 8px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 12px 5px;
+      font-size: 1rem;
+      background: transparent;
+      outline: none;
+    }
+    .search-bar button {
+      background: #ffaa44;
+      border: none;
+      padding: 8px 26px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* filter & polish grid */
+    .main-polish {
+      margin: 45px 0 60px;
+    }
+    .polish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .polish-count {
+      background: #e9f0f5;
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-weight: 700;
+    }
+    .sort-select {
+      padding: 8px 18px;
+      border-radius: 40px;
+      border: 1px solid #cbdde9;
+      font-weight: 600;
+      background: white;
+    }
+    .filter-sidebar {
+      background: white;
+      border-radius: 32px;
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 14px rgba(0,0,0,0.03);
+      border: 1px solid #e9edf2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-end;
+    }
+    .filter-group {
+      flex: 1;
+      min-width: 160px;
+    }
+    .filter-group label {
+      font-weight: 800;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+    }
+    .filter-group input, .filter-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 40px;
+      border: 1px solid #ced9e3;
+    }
+    .btn-filter {
+      background: #0f2c39;
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    .btn-filter:hover {
+      background: #ffaa44;
+      color: #1e2a36;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
+      transition: 0.25s ease;
+      border: 1px solid #eef3fc;
+      padding: 22px 18px;
+      text-align: center;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.15);
+      border-color: #ffaa4480;
+    }
+    .product-icon {
+      font-size: 3rem;
+      color: #e67e22;
+      background: #fff0e0;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 60px;
+      margin: 0 auto 16px;
+    }
+    .product-title {
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .product-brand {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #eef3fc;
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 40px;
+      margin: 8px 0;
+    }
+    .product-price {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #e67e22;
+      margin: 8px 0;
+    }
+    .product-stock {
+      font-size: 0.75rem;
+      color: #4e6b7a;
+      margin-bottom: 14px;
+    }
+    .cart-btn {
+      background: #ffaa44;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 44px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .cart-btn:hover {
+      background: #e6952e;
+      transform: scale(0.97);
+    }
+    /* modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+    }
+    .modal-content {
+      background: white;
+      max-width: 480px;
+      width: 90%;
+      border-radius: 40px;
+      padding: 28px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0f2c39;
+      color: #ffefcf;
+      padding: 12px 28px;
+      border-radius: 70px;
+      z-index: 1100;
+      opacity: 0;
+      transition: 0.2s;
+      font-weight: 600;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+    }
+    footer {
+      background: #08161e;
+      color: #bdd3df;
+      text-align: center;
+      padding: 28px;
+      margin-top: 30px;
+    }
+    @media (max-width: 680px) {
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .filter-sidebar { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">
+      <h1>Avto<span>nerker</span>.com</h1>
+      <small>պոլիշ • փայլեցում • լաքեր • ներկեր</small>
+    </div>
+    <div class="nav-links">
+      <a href="#" id="homeLink">Խանութ</a>
+      <a href="#" class="active" id="polishPageLink">Պոլիշ / Փայլեցում</a>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <button class="btn-outline-light" id="openAddPolishBtn"><i class="fas fa-plus"></i> Ավելացնել պոլիշ</button>
+    </div>
+  </div>
+</div>
+
+<section class="polish-hero">
+  <div class="container">
+    <h2><i class="fas fa-brush"></i> Պրոֆեսիոնալ պոլիշ և փայլեցում</h2>
+    <p>Բարձրորակ փայլեցնող մածուկներ, հեղուկներ, գելեր և պաշտպանիչ կերամիկա՝ ավտոմեքենայի անթերի փայլի համար</p>
+    <div class="search-bar">
+      <input type="text" id="searchPolishInput" placeholder="Որոնել պոլիշ, մածուկ, հեղուկ փայլեցում...">
+      <button id="searchPolishBtn"><i class="fas fa-search"></i> Որոնել</button>
+    </div>
+  </div>
+</section>
+
+<div class="container main-polish">
+  <div class="filter-sidebar">
+    <div class="filter-group">
+      <label><i class="fas fa-tag"></i> Գնային միջակայք (֏)</label>
+      <div style="display: flex; gap: 8px;">
+        <input type="number" id="priceMinPolish" placeholder="Մինչև">
+        <input type="number" id="priceMaxPolish" placeholder="Առավելագույնը">
+      </div>
+    </div>
+    <div class="filter-group">
+      <label><i class="fas fa-industry"></i> Արտադրող</label>
+      <select id="brandPolishFilter">
+        <option value="">Բոլորը</option>
+        <option>3M</option><option>Menzerna</option><option>Koch Chemie</option><option>MIPA</option><option>Novol</option><option>Gyeon</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label><i class="fas fa-flask"></i> Տեսակ</label>
+      <select id="typePolishFilter">
+        <option value="">Բոլոր տեսակները</option>
+        <option value="paste">Մածուկ</option>
+        <option value="liquid">Հեղուկ</option>
+        <option value="ceramic">Կերամիկա/Spray</option>
+      </select>
+    </div>
+    <button class="btn-filter" id="applyPolishFilters">Կիրառել զտիչներ</button>
+    <button class="btn-filter" id="resetPolishFilters" style="background:#5f7f8c;">Վերականգնել</button>
+  </div>
+
+  <div class="polish-header">
+    <span class="polish-count" id="polishCount">Բեռնվում է...</span>
+    <select id="sortPolishSelect" class="sort-select">
+      <option value="name">Այբբենական</option>
+      <option value="priceAsc">Գինը ցածրից բարձր</option>
+      <option value="priceDesc">Գինը բարձրից ցածր</option>
+    </select>
+  </div>
+
+  <div class="product-grid" id="polishGrid"></div>
+</div>
+
+<footer>
+  <p>© 2025 Avtonerker.com — պոլիշների, փայլեցնող միջոցների մասնագիտացված բաժին | Առաքում Հայաստանով</p>
+  <p><i class="fas fa-phone-alt"></i> +374 99 000111 &nbsp; <i class="fab fa-viber"></i> +374 99 000222 &nbsp; <i class="fas fa-gem"></i> Անթերի փայլ</p>
+</footer>
+
+<!-- Modal add polish -->
+<div id="addPolishModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-plus-circle"></i> Ավելացնել նոր պոլիշ / փայլեցում</h3>
+    <input type="text" id="polishName" placeholder="Անվանումը (օր. 3M Perfect-it մածուկ)">
+    <select id="polishTypeSelect">
+      <option value="paste">Մածուկ (paste)</option>
+      <option value="liquid">Հեղուկ (liquid)</option>
+      <option value="ceramic">Կերամիկա / Spray</option>
+    </select>
+    <input type="text" id="polishBrand" placeholder="Արտադրող (3M, Menzerna...)">
+    <input type="number" id="polishPrice" placeholder="Գինը (դրամ)">
+    <input type="number" id="polishStock" placeholder="Քանակը պահեստում">
+    <textarea id="polishDesc" rows="2" placeholder="Նկարագրություն, ծավալ, փայլի աստիճան..."></textarea>
+    <div style="display:flex; gap:12px; justify-content: flex-end; margin-top: 20px;">
+      <button class="btn-outline-light" id="closePolishModalBtn">Չեղարկել</button>
+      <button class="btn-filter" id="savePolishBtn" style="background:#ffaa44; color:#1e2a36;">Ավելացնել</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart modal -->
+<div id="cartModal" class="modal" style="justify-content: flex-end;">
+  <div class="modal-content" style="max-width: 420px;">
+    <h3><i class="fas fa-shopping-cart"></i> Զամբյուղ</h3>
+    <div id="cartItemsPolish" style="max-height: 300px; overflow-y: auto; margin: 16px 0;"></div>
+    <div id="cartTotalPolish" style="font-weight:800; font-size:1.3rem;"></div>
+    <button id="clearCartPolishBtn" class="btn-outline-light" style="width:100%; margin: 8px 0;">Մաքրել զամբյուղը</button>
+    <button id="closeCartPolishBtn" class="btn-filter" style="background:#0f2c39;">Փակել</button>
+  </div>
+</div>
+
+<div id="toastMsgPolish" class="toast"></div>
+
+<script>
+  // ---------- Պոլիշների հիմնական տվյալներ (մածուկ, հեղուկ, կերամիկա) ----------
+  let polishProducts = [
+    { id: 101, name: "3M Perfect-it մածուկ 50383", category: "paste", brand: "3M", price: 8500, stock: 12, description: "Վերականգնող փայլ, 250ml", type: "paste" },
+    { id: 102, name: "Menzerna 3800 հեղուկ փայլեցում", category: "liquid", brand: "Menzerna", price: 7200, stock: 8, description: "Բարձր փայլ, 1լ", type: "liquid" },
+    { id: 103, name: "Koch Chemie NanoMagic Spray", category: "ceramic", brand: "Koch Chemie", price: 11900, stock: 5, description: "Կերամիկական ծածկույթ", type: "ceramic" },
+    { id: 104, name: "MIPA պրոֆեսիոնալ պոլիշ մածուկ", category: "paste", brand: "MIPA", price: 5400, stock: 15, description: "Հղկում + փայլ, 300ml", type: "paste" },
+    { id: 105, name: "Novol Finish Polish", category: "liquid", brand: "Novol", price: 4900, stock: 10, description: "Հեղուկ փայլեցում, 500ml", type: "liquid" },
+    { id: 106, name: "Gyeon Q² Wax Spray", category: "ceramic", brand: "Gyeon", price: 14900, stock: 4, description: "Պաշտպանիչ նանո ծածկույթ", type: "ceramic" },
+    { id: 107, name: "3M Finesse-it մածուկ", category: "paste", brand: "3M", price: 9800, stock: 7, description: "Գերփայլ, 250ml", type: "paste" },
+    { id: 108, name: "Menzerna heavy cut compound", category: "paste", brand: "Menzerna", price: 6700, stock: 9, description: "Խորը քերծվածքների վերացում", type: "paste" }
+  ];
+
+  let cart = [];     // { id, name, price, quantity }
+  let toastMsg = (text) => {
+    let t = document.getElementById('toastMsgPolish');
+    t.textContent = text;
+    t.style.opacity = 1;
+    setTimeout(() => t.style.opacity = 0, 2100);
+  };
+
+  // save / load cart
+  function saveCartPolish() { localStorage.setItem('polish_cart_avto', JSON.stringify(cart)); updateCartUI(); }
+  function loadCartPolish() { let saved = localStorage.getItem('polish_cart_avto'); if(saved) cart = JSON.parse(saved); updateCartUI(); }
+
+  function updateCartUI() {
+    let count = cart.reduce((sum,i) => sum + i.quantity, 0);
+    document.getElementById('cartCount').innerText = count;
+    let total = cart.reduce((s,i) => s + (i.price * i.quantity), 0);
+    let cartDiv = document.getElementById('cartItemsPolish');
+    if(cartDiv) {
+      if(cart.length === 0) cartDiv.innerHTML = "<p style='text-align:center;'>🛒 Զամբյուղը դատարկ է</p>";
+      else {
+        cartDiv.innerHTML = cart.map(item => `
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; border-bottom:1px solid #e9eef2; padding-bottom:8px;">
+            <span><strong>${item.name}</strong> x${item.quantity}</span>
+            <span>${(item.price * item.quantity).toLocaleString()} ֏</span>
+            <button class="removeCartPolishItem" data-id="${item.id}" style="background:#ffe1d0; border:none; border-radius:30px; padding:4px 10px;">🗑</button>
+          </div>
+        `).join('');
+        document.querySelectorAll('.removeCartPolishItem').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            let id = parseInt(btn.dataset.id);
+            let existing = cart.find(i => i.id === id);
+            if(existing) { if(existing.quantity > 1) existing.quantity--; else cart = cart.filter(i => i.id !== id); saveCartPolish(); updateCartUI(); renderPolishProducts(); toastMsg("Զամբյուղը թարմացվեց"); }
+          });
+        });
+      }
+    }
+    let totalSpan = document.getElementById('cartTotalPolish');
+    if(totalSpan) totalSpan.innerHTML = `Ընդհանուր՝ ${total.toLocaleString()} ֏`;
+  }
+
+  function addToCartPolish(product) {
+    let existing = cart.find(i => i.id === product.id);
+    if(existing) existing.quantity++;
+    else cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+    saveCartPolish();
+    toastMsg(`✨ ${product.name} ավելացվեց զամբյուղում`);
+    renderPolishProducts();
+  }
+
+  // filtering + sorting
+  let currentTypeFilter = "";
+  let currentBrandFilter = "";
+
+  function getFilteredPolish() {
+    let filtered = [...polishProducts];
+    let searchTerm = document.getElementById('searchPolishInput').value.trim().toLowerCase();
+    if(searchTerm) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm) || p.brand.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm));
+    let brandVal = document.getElementById('brandPolishFilter').value;
+    if(brandVal) filtered = filtered.filter(p => p.brand === brandVal);
+    let typeVal = document.getElementById('typePolishFilter').value;
+    if(typeVal) filtered = filtered.filter(p => p.type === typeVal);
+    let minP = parseInt(document.getElementById('priceMinPolish').value);
+    let maxP = parseInt(document.getElementById('priceMaxPolish').value);
+    if(!isNaN(minP)) filtered = filtered.filter(p => p.price >= minP);
+    if(!isNaN(maxP)) filtered = filtered.filter(p => p.price <= maxP);
+    let sortVal = document.getElementById('sortPolishSelect').value;
+    if(sortVal === 'priceAsc') filtered.sort((a,b)=> a.price - b.price);
+    else if(sortVal === 'priceDesc') filtered.sort((a,b)=> b.price - a.price);
+    else filtered.sort((a,b)=> a.name.localeCompare(b.name));
+    return filtered;
+  }
+
+  function getPolishTypeName(type) {
+    if(type === 'paste') return 'Մածուկ';
+    if(type === 'liquid') return 'Հեղուկ';
+    return 'Կերամիկա/Spray';
+  }
+
+  function renderPolishProducts() {
+    let filtered = getFilteredPolish();
+    document.getElementById('polishCount').innerHTML = `${filtered.length} ապրանք | փայլեցման միջոցներ`;
+    let grid = document.getElementById('polishGrid');
+    if(filtered.length === 0) { grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">🔍 Պոլիշ / փայլեցնող միջոց չի գտնվել</div>`; return; }
+    grid.innerHTML = filtered.map(prod => `
+      <div class="product-card">
+        <div class="product-icon"><i class="fas ${prod.type === 'paste' ? 'fa-gripfire' : (prod.type === 'liquid' ? 'fa-fill-drip' : 'fa-shield-alt')}"></i></div>
+        <div class="product-title">${escapeHtml(prod.name)}</div>
+        <div class="product-brand"><i class="fas fa-certificate"></i> ${prod.brand}  •  ${getPolishTypeName(prod.type)}</div>
+        <div class="product-price">${prod.price.toLocaleString()} ֏</div>
+        <div class="product-stock">📦 պահեստում՝ ${prod.stock} հատ</div>
+        <button class="cart-btn polish-add-btn" data-id="${prod.id}"><i class="fas fa-cart-plus"></i> Ավելացնել զամբյուղ</button>
+      </div>
+    `).join('');
+    document.querySelectorAll('.polish-add-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let id = parseInt(btn.dataset.id);
+        let prod = polishProducts.find(p => p.id === id);
+        if(prod && prod.stock > 0) addToCartPolish(prod);
+        else toastMsg("Ապրանքը ժամանակավորապես բացակայում է");
+      });
+    });
+  }
+
+  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+  // Add new polish product
+  function addNewPolish() {
+    let name = document.getElementById('polishName').value.trim();
+    let type = document.getElementById('polishTypeSelect').value;
+    let brand = document.getElementById('polishBrand').value.trim();
+    let price = parseInt(document.getElementById('polishPrice').value);
+    let stock = parseInt(document.getElementById('polishStock').value);
+    let desc = document.getElementById('polishDesc').value.trim();
+    if(!name || !brand || isNaN(price) || isNaN(stock)) { toastMsg("Լրացրեք բոլոր դաշտերը (անուն, արտադրող, գին, քանակ)"); return; }
+    let newId = Date.now();
+    polishProducts.push({
+      id: newId, name, category: type, brand, price, stock, description: desc || "Նոր պոլիշ", type: type
+    });
+    document.getElementById('polishName').value = "";
+    document.getElementById('polishBrand').value = "";
+    document.getElementById('polishPrice').value = "";
+    document.getElementById('polishStock').value = "";
+    document.getElementById('polishDesc').value = "";
+    document.getElementById('addPolishModal').style.display = "none";
+    toastMsg("✅ Նոր պոլիշ/փայլեցում ավելացված է");
+    renderPolishProducts();
+  }
+
+  // Event listeners
+  document.getElementById('searchPolishBtn').addEventListener('click', () => renderPolishProducts());
+  document.getElementById('applyPolishFilters').addEventListener('click', () => renderPolishProducts());
+  document.getElementById('resetPolishFilters').addEventListener('click', () => {
+    document.getElementById('priceMinPolish').value = "";
+    document.getElementById('priceMaxPolish').value = "";
+    document.getElementById('brandPolishFilter').value = "";
+    document.getElementById('typePolishFilter').value = "";
+    document.getElementById('searchPolishInput').value = "";
+    renderPolishProducts();
+  });
+  document.getElementById('sortPolishSelect').addEventListener('change', () => renderPolishProducts());
+
+  // modal logic
+  document.getElementById('openAddPolishBtn').onclick = () => { document.getElementById('addPolishModal').style.display = "flex"; };
+  document.getElementById('closePolishModalBtn').onclick = () => { document.getElementById('addPolishModal').style.display = "none"; };
+  document.getElementById('savePolishBtn').onclick = addNewPolish;
+
+  // cart modal
+  const cartIconElem = document.getElementById('cartIcon');
+  const cartModalDiv = document.getElementById('cartModal');
+  cartIconElem.onclick = () => { updateCartUI(); cartModalDiv.style.display = "flex"; };
+  document.getElementById('closeCartPolishBtn').onclick = () => { cartModalDiv.style.display = "none"; };
+  document.getElementById('clearCartPolishBtn').onclick = () => { cart = []; saveCartPolish(); updateCartUI(); renderPolishProducts(); toastMsg("Զամբյուղը մաքրված է"); };
+
+  window.onclick = (e) => { if(e.target === document.getElementById('addPolishModal')) document.getElementById('addPolishModal').style.display = "none"; if(e.target === cartModalDiv) cartModalDiv.style.display = "none"; };
+
+  // navigation mock
+  document.getElementById('homeLink').addEventListener('click', (e) => { e.preventDefault(); alert("🎨 Սա պոլիշների էջն է: Գլխավոր էջը կբացվի avtonerker.com կայքում (դեմո)"); });
+  document.getElementById('polishPageLink').addEventListener('click', (e) => { e.preventDefault(); renderPolishProducts(); });
+
+  loadCartPolish();
+  renderPolishProducts();
+</script>
+</body>
+</html>

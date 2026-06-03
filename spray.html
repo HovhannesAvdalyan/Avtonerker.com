@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Avtonerker.com - Spray ներկեր | Ավտոներկերի և սպասարկման խանութ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f4f7fc;
+      color: #1e2a36;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .navbar {
+      background: #0a1c24;
+      color: white;
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 10px 25px -8px rgba(0,0,0,0.2);
+      border-bottom: 1px solid #ffaa4433;
+    }
+
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFF 30%, #ffaa44 80%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      background: none;
+      color: #ffaa44;
+    }
+    .logo small {
+      font-size: 0.7rem;
+      display: block;
+      color: #b9d2df;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #ffaa44;
+    }
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      background: #1e3a44;
+      padding: 8px 12px;
+      border-radius: 40px;
+      transition: 0.2s;
+    }
+    .cart-icon:hover {
+      background: #ffaa44;
+      color: #0a1c24;
+    }
+    .cart-count {
+      background: #ff6b4a;
+      border-radius: 30px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      font-weight: bold;
+    }
+    .btn-outline-light {
+      border: 1.5px solid #ffaa44;
+      padding: 8px 22px;
+      border-radius: 40px;
+      background: transparent;
+      color: #ffaa44;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-outline-light:hover {
+      background: #ffaa44;
+      color: #0f2c39;
+      transform: scale(0.97);
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #134b5e, #06212b);
+      color: white;
+      padding: 50px 0 45px;
+      text-align: center;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .category-info {
+      background: #fff6e8;
+      border-radius: 20px;
+      padding: 20px 28px;
+      margin: 30px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-left: 6px solid #ffaa44;
+    }
+    .category-info h3 i {
+      color: #ffaa44;
+      margin-right: 10px;
+    }
+    .back-link {
+      background: #0a1c24;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .back-link:hover {
+      background: #ffaa44;
+      color: #0a1c24;
+    }
+
+    .main-grid {
+      display: flex;
+      gap: 32px;
+      margin: 20px 0 60px;
+      flex-wrap: wrap;
+    }
+    .filters {
+      flex: 1.2;
+      min-width: 260px;
+      background: #ffffffdd;
+      backdrop-filter: blur(2px);
+      border-radius: 32px;
+      padding: 28px 24px;
+      height: fit-content;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+      border: 1px solid #eef2f8;
+    }
+    .products-area {
+      flex: 3;
+    }
+    .filter-group {
+      margin-bottom: 28px;
+    }
+    .filter-group label {
+      font-weight: 800;
+      display: block;
+      margin-bottom: 10px;
+      color: #1f3b44;
+    }
+    .filter-group input, .filter-group select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 34px;
+      border: 1px solid #cfdfed;
+      background: white;
+      font-weight: 500;
+    }
+    .btn-filter {
+      background: #0f2c39;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 44px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: 0.2s;
+    }
+    .btn-filter:hover {
+      background: #ffaa44;
+      color: #0a1c24;
+    }
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .product-count {
+      background: #e9f0f5;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #1e5a6b;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 28px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
+      transition: all 0.25s ease;
+      border: 1px solid #ecf3f9;
+      padding: 22px 18px;
+      text-align: center;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 36px -14px rgba(0,0,0,0.2);
+      border-color: #ffaa4470;
+    }
+    .product-icon {
+      font-size: 3.3rem;
+      color: #e67e22;
+      margin-bottom: 12px;
+      background: #fef3e2;
+      width: 70px;
+      height: 70px;
+      line-height: 70px;
+      border-radius: 60px;
+      margin: 0 auto 16px;
+    }
+    .product-title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+    .product-cat {
+      display: inline-block;
+      background: #f0f6fa;
+      padding: 5px 15px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+    .product-price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #e67e22;
+      margin: 8px 0;
+    }
+    .product-stock {
+      font-size: 0.75rem;
+      color: #4a6272;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .cart-btn {
+      background: #ffaa44;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 44px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+    .cart-btn:hover {
+      background: #e6952e;
+      transform: scale(0.97);
+    }
+    .badge-color {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #2c3e50;
+      color: white;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+    .color-sample {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(3px);
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 40px;
+      padding: 32px;
+    }
+    .modal-content input, .modal-content select, .modal-content textarea {
+      width: 100%;
+      margin: 8px 0 18px;
+      padding: 12px 16px;
+      border-radius: 34px;
+      border: 1px solid #ccdde9;
+    }
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #0f2c39;
+      color: #ffefcf;
+      padding: 14px 30px;
+      border-radius: 70px;
+      z-index: 1100;
+      opacity: 0;
+      transition: 0.2s;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    footer {
+      background: #07161f;
+      color: #b9cfdb;
+      text-align: center;
+      padding: 36px 20px;
+      margin-top: 30px;
+      border-top: 1px solid #ffaa4422;
+    }
+    @media (max-width: 700px) {
+      .product-grid { grid-template-columns: 1fr 1fr; }
+      .page-header h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="container nav-flex">
+    <div class="logo">
+      <h1>Avto<span>nerker</span>.com</h1>
+      <small>ներկեր • լաքեր • հղկաթուղթ • դիմակներ • գործիքներ</small>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" id="homeLink">Խանութ</a>
+      <a href="#" class="active">Spray ներկեր</a>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <button class="btn-outline-light" id="openAddProductBtn"><i class="fas fa-plus"></i> Ավելացնել ապրանք</button>
+    </div>
+  </div>
+</div>
+
+<section class="page-header">
+  <div class="container">
+    <h1><i class="fas fa-spray-can"></i> Spray ներկեր և աերոզոլներ</h1>
+    <p>Բարձրորակ աերոզոլային ներկեր, լաքեր, նախաներկեր և մաքրող միջոցներ. հարմար են ինչպես մասնագետների, այնպես էլ սիրողների համար</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="category-info">
+    <h3><i class="fas fa-palette"></i> Spray արտադրանքի տեսակները</h3>
+    <div>🎨 Ակրիլային ներկեր &nbsp;|&nbsp; 🎨 Լաքեր &nbsp;|&nbsp; 🎨 Նախաներկեր &nbsp;|&nbsp; 🎨 Մաքրող միջոցներ</div>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Վերադառնալ խանութ</a>
+  </div>
+
+  <div class="main-grid">
+    <aside class="filters">
+      <h3><i class="fas fa-sliders-h"></i> Զտիչներ</h3>
+      <div class="filter-group">
+        <label><i class="fas fa-search"></i> Որոնել</label>
+        <input type="text" id="searchInput" placeholder="Որոնել spray ըստ անվան/բրենդի">
+      </div>
+      <div class="filter-group">
+        <label>Գին (դրամ)</label>
+        <div style="display:flex; gap:8px;">
+          <input type="number" id="priceMin" placeholder="Մինչև">
+          <input type="number" id="priceMax" placeholder="Առավելագույնը">
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Արտադրող / Բրենդ</label>
+        <select id="brandFilter">
+          <option value="">Բոլորը</option>
+          <option>Motip</option><option>MIPA</option><option>Novol</option><option>Bodyline</option><option>3M</option><option>Kudo</option><option>Dupli-Color</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Spray-ի տեսակ</label>
+        <select id="typeFilter">
+          <option value="">Բոլոր տեսակները</option>
+          <option value="color">Գունավոր ներկ</option>
+          <option value="lacquer">Լաք (անգույն)</option>
+          <option value="primer">Նախաներկ</option>
+          <option value="cleaner">Մաքրող միջոց</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Գույն / Երանգ</label>
+        <select id="colorFilter">
+          <option value="">Բոլոր գույները</option>
+          <option value="կարմիր">Կարմիր</option>
+          <option value="սև">Սև</option>
+          <option value="սպիտակ">Սպիտակ</option>
+          <option value="մոխրագույն">Մոխրագույն</option>
+          <option value="կապույտ">Կապույտ</option>
+          <option value="անգույն">Անգույն (լաք)</option>
+        </select>
+      </div>
+      <button class="btn-filter" id="applyFiltersBtn">Կիրառել զտիչներ</button>
+      <button class="btn-filter" id="resetFiltersBtn" style="background:#567d8a; margin-top:10px;">Վերականգնել</button>
+    </aside>
+
+    <div class="products-area">
+      <div class="products-header">
+        <span class="product-count" id="productCount"></span>
+        <select id="sortSelect">
+          <option value="name">Այբբենական կարգ</option>
+          <option value="priceAsc">Գինը ցածրից բարձր</option>
+          <option value="priceDesc">Գինը բարձրից ցածր</option>
+        </select>
+      </div>
+      <div class="product-grid" id="productsGrid"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Avtonerker.com — ավտոներկերի, հղկող նյութերի, պաշտպանիչ հանդերձանքի պրոֆեսիոնալ խանութ | Առաքում Հայաստանի ողջ տարածքում</p>
+  <p><i class="fas fa-phone-alt"></i> +374 99 000111 &nbsp; <i class="fab fa-viber"></i> +374 99 000222</p>
+</footer>
+
+<!-- Add Product Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <h3>➕ Ավելացնել նոր Spray ապրանք</h3>
+    <input type="text" id="prodName" placeholder="Անվանում (օր. Motip Spray ներկ կարմիր)">
+    <select id="prodType">
+      <option value="color">Գունավոր ներկ</option>
+      <option value="lacquer">Լաք (անգույն)</option>
+      <option value="primer">Նախաներկ</option>
+      <option value="cleaner">Մաքրող միջոց</option>
+    </select>
+    <input type="text" id="prodColor" placeholder="Գույն (կարմիր, սև, սպիտակ, անգույն...)">
+    <input type="text" id="prodBrand" placeholder="Արտադրող (Motip, MIPA, ...)">
+    <input type="number" id="prodPrice" placeholder="Գին (դրամ)">
+    <input type="number" id="prodStock" placeholder="Քանակը պահեստում">
+    <textarea id="prodDesc" rows="2" placeholder="Նկարագրություն (ծավալը 400ml, կիրառում...)"></textarea>
+    <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:12px;">
+      <button class="btn-outline-light" id="closeModalBtn">Չեղարկել</button>
+      <button class="btn-filter" id="saveProductBtn" style="background:#ffaa44; color:#1e2a36;">Հրապարակել</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="modal" style="justify-content: flex-end;">
+  <div class="modal-content" style="max-width: 430px; border-radius: 32px;">
+    <h3><i class="fas fa-shopping-cart"></i> Զամբյուղ</h3>
+    <div id="cartItemsList" style="max-height: 330px; overflow-y: auto; margin: 18px 0;"></div>
+    <div id="cartTotal" style="font-weight:800; font-size:1.4rem; margin: 10px 0;"></div>
+    <button id="clearCartBtn" class="btn-outline-light" style="width:100%; margin-bottom:8px;">Մաքրել զամբյուղը</button>
+    <button id="closeCartBtn" class="btn-filter" style="background:#0f2c39;">Փակել</button>
+  </div>
+</div>
+
+<div id="toastMsg" class="toast"></div>
+
+<script>
+  // ---------- SPRAY ԱՊՐԱՆՔՆԵՐ ----------
+  let products = [
+    { id: 401, name: "Motip Spray ներկ - կարմիր", category: "spray", sprayType: "color", color: "կարմիր", brand: "Motip", price: 1850, stock: 45, volume: "400ml", description: "400ml, ակրիլային ներկ, արագ չորացող" },
+    { id: 402, name: "Motip Spray ներկ - սև", category: "spray", sprayType: "color", color: "սև", brand: "Motip", price: 1850, stock: 52, volume: "400ml", description: "400ml, փայլատ սև, դեկորատիվ" },
+    { id: 403, name: "Motip Spray ներկ - սպիտակ", category: "spray", sprayType: "color", color: "սպիտակ", brand: "Motip", price: 1850, stock: 38, volume: "400ml", description: "400ml, ունիվերսալ սպիտակ" },
+    { id: 404, name: "MIPA 1K ակրիլային լաք spray", category: "spray", sprayType: "lacquer", color: "անգույն", brand: "MIPA", price: 2100, stock: 28, volume: "400ml", description: "400ml, բարձր փայլ, UV պաշտպանություն" },
+    { id: 405, name: "Novol նախաներկ spray (մոխրագույն)", category: "spray", sprayType: "primer", color: "մոխրագույն", brand: "Novol", price: 2300, stock: 22, volume: "400ml", description: "400ml, հակակոռոզիոն նախաներկ" },
+    { id: 406, name: "Bodyline ակրիլային spray - կապույտ", category: "spray", sprayType: "color", color: "կապույտ", brand: "Bodyline", price: 1750, stock: 30, volume: "400ml", description: "400ml, վառ կապույտ երանգ" },
+    { id: 407, name: "3M մաքրող spray", category: "spray", sprayType: "cleaner", color: "անգույն", brand: "3M", price: 3200, stock: 18, volume: "500ml", description: "500ml, մակերեսների յուղազերծման համար" },
+    { id: 408, name: "Kudo Spray ներկ - արծաթագույն", category: "spray", sprayType: "color", color: "արծաթագույն", brand: "Kudo", price: 1650, stock: 35, volume: "400ml", description: "400ml, մետալիկ էֆեկտ" },
+    { id: 409, name: "Motip փայլատ լաք spray", category: "spray", sprayType: "lacquer", color: "անգույն", brand: "Motip", price: 1950, stock: 25, volume: "400ml", description: "400ml, փայլատ երանգ, պաշտպանիչ շերտ" },
+    { id: 410, name: "Dupli-Color ներկ - ոսկեգույն", category: "spray", sprayType: "color", color: "ոսկեգույն", brand: "Dupli-Color", price: 2450, stock: 15, volume: "400ml", description: "400ml, մետալիկ ոսկի, դեկորատիվ" },
+    { id: 411, name: "MIPA նախաներկ spray (սպիտակ)", category: "spray", sprayType: "primer", color: "սպիտակ", brand: "MIPA", price: 2200, stock: 20, volume: "400ml", description: "400ml, ակրիլային նախաներկ" },
+    { id: 412, name: "Kudo ջերմակայուն spray (սև)", category: "spray", sprayType: "color", color: "սև", brand: "Kudo", price: 2800, stock: 12, volume: "400ml", description: "400ml, դիմանում է մինչև 800°C" }
+  ];
+
+  let cart = [];
+  let toast = (text) => { let t = document.getElementById('toastMsg'); t.textContent = text; t.style.opacity = 1; setTimeout(() => t.style.opacity = 0, 2200); };
+  
+  function saveCart() { localStorage.setItem('avtonerker_cart', JSON.stringify(cart)); updateCartUI(); }
+  function loadCart() { let saved = localStorage.getItem('avtonerker_cart'); if(saved) cart = JSON.parse(saved); updateCartUI(); }
+
+  function updateCartUI() {
+    let count = cart.reduce((s, i) => s + i.quantity, 0);
+    document.getElementById('cartCount').innerText = count;
+    let totalPrice = cart.reduce((s, i) => s + (i.price * i.quantity), 0);
+    let cartListDiv = document.getElementById('cartItemsList');
+    if(cartListDiv) {
+      if(cart.length === 0) cartListDiv.innerHTML = "<p style='text-align:center'>🛒 Զամբյուղը դատարկ է</p>";
+      else {
+        cartListDiv.innerHTML = cart.map(item => `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #eee; padding-bottom:8px;"><span><strong>${escapeHtml(item.name)}</strong> x${item.quantity}</span><span style="font-weight:700">${(item.price*item.quantity).toLocaleString()} ֏</span><button class="removeCartItem" data-id="${item.id}" style="background:#ffddcc; border:none; border-radius:30px; padding:4px 10px; cursor:pointer;">🗑</button></div>`).join('');
+        document.querySelectorAll('.removeCartItem').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            let id = parseInt(btn.dataset.id);
+            let existing = cart.find(i => i.id === id);
+            if(existing) { if(existing.quantity > 1) existing.quantity--; else cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); renderProducts(); toast("Զամբյուղը թարմացվեց"); }
+          });
+        });
+      }
+    }
+    let totalSpan = document.getElementById('cartTotal');
+    if(totalSpan) totalSpan.innerHTML = `Ընդհանուր՝ ${totalPrice.toLocaleString()} ֏`;
+  }
+
+  function addToCart(product) {
+    let existing = cart.find(i => i.id === product.id);
+    if(existing) existing.quantity++;
+    else cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+    saveCart();
+    toast(`✅ ${product.name} ավելացվեց զամբյուղում`);
+    renderProducts();
+  }
+
+  function escapeHtml(str) { return String(str).replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+  function getSprayTypeName(type) {
+    const map = { color:"Գունավոր ներկ", lacquer:"Լաք", primer:"Նախաներկ", cleaner:"Մաքրող միջոց" };
+    return map[type] || type;
+  }
+
+  function getColorBadge(color) {
+    const colorMap = {
+      "կարմիր": "#e74c3c", "սև": "#2c3e50", "սպիտակ": "#ecf0f1", "մոխրագույն": "#95a5a6",
+      "կապույտ": "#3498db", "արծաթագույն": "#bdc3c7", "ոսկեգույն": "#f39c12", "անգույն": "#d5d8dc"
+    };
+    let bgColor = colorMap[color] || "#95a5a6";
+    return `<span class="color-sample" style="background: ${bgColor}; border:1px solid #ccc;"></span>${color}`;
+  }
+
+  function getFilteredAndSorted() {
+    let filtered = [...products];
+    let searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+    if(searchTerm) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchTerm) || p.brand.toLowerCase().includes(searchTerm) || p.description.toLowerCase().includes(searchTerm));
+    let brandVal = document.getElementById('brandFilter').value;
+    if(brandVal) filtered = filtered.filter(p => p.brand === brandVal);
+    let typeVal = document.getElementById('typeFilter').value;
+    if(typeVal) filtered = filtered.filter(p => p.sprayType === typeVal);
+    let colorVal = document.getElementById('colorFilter').value;
+    if(colorVal) filtered = filtered.filter(p => p.color === colorVal);
+    let minP = parseInt(document.getElementById('priceMin').value);
+    let maxP = parseInt(document.getElementById('priceMax').value);
+    if(!isNaN(minP)) filtered = filtered.filter(p => p.price >= minP);
+    if(!isNaN(maxP)) filtered = filtered.filter(p => p.price <= maxP);
+    let sortVal = document.getElementById('sortSelect').value;
+    if(sortVal === 'priceAsc') filtered.sort((a,b)=> a.price - b.price);
+    else if(sortVal === 'priceDesc') filtered.sort((a,b)=> b.price - a.price);
+    else filtered.sort((a,b)=> a.name.localeCompare(b.name));
+    return filtered;
+  }
+
+  function renderProducts() {
+    let filtered = getFilteredAndSorted();
+    document.getElementById('productCount').innerHTML = `📦 Գտնվել է ${filtered.length} spray ապրանք`;
+    let grid = document.getElementById('productsGrid');
+    if(filtered.length === 0) { grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px;">🔍 Ոչ մի spray ապրանք չի գտնվել</div>`; return; }
+    grid.innerHTML = filtered.map(prod => `
+      <div class="product-card">
+        <div class="badge-color">${getSprayTypeName(prod.sprayType)}</div>
+        <div class="product-icon"><i class="fas fa-spray-can"></i></div>
+        <div class="product-title">${escapeHtml(prod.name)}</div>
+        <div class="product-cat">${prod.brand} | ${prod.volume}</div>
+        <div class="product-price">${prod.price.toLocaleString()} ֏</div>
+        <div class="product-stock">🎨 ${getColorBadge(prod.color)} | 📦 ${prod.stock} հատ</div>
+        <button class="cart-btn" data-id="${prod.id}"><i class="fas fa-cart-plus"></i> Ավելացնել</button>
+      </div>
+    `).join('');
+    document.querySelectorAll('.cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        let id = parseInt(btn.dataset.id);
+        let product = products.find(p => p.id === id);
+        if(product && product.stock > 0) addToCart(product);
+        else toast("Քանակը սպառված է 🚫");
+      });
+    });
+  }
+
+  function addNewProduct() {
+    let name = document.getElementById('prodName').value.trim();
+    let sprayType = document.getElementById('prodType').value;
+    let color = document.getElementById('prodColor').value.trim();
+    let brand = document.getElementById('prodBrand').value.trim();
+    let price = parseInt(document.getElementById('prodPrice').value);
+    let stock = parseInt(document.getElementById('prodStock').value);
+    let desc = document.getElementById('prodDesc').value.trim();
+    if(!name || !brand || !color || isNaN(price) || isNaN(stock)) { toast("Լրացրեք բոլոր դաշտերը"); return; }
+    let newId = Date.now();
+    products.push({ id: newId, name, category: "spray", sprayType, color, brand, price, stock, volume: "400ml", description: desc || "Spray ապրանք" });
+    document.getElementById('prodName').value = ""; document.getElementById('prodBrand').value = ""; document.getElementById('prodColor').value = ""; document.getElementById('prodPrice').value = ""; document.getElementById('prodStock').value = ""; document.getElementById('prodDesc').value = "";
+    document.getElementById('productModal').style.display = "none";
+    renderProducts();
+    toast("✅ Նոր spray ապրանք ավելացված է");
+  }
+
+  document.getElementById('applyFiltersBtn').addEventListener('click', () => renderProducts());
+  document.getElementById('resetFiltersBtn').addEventListener('click', () => {
+    document.getElementById('priceMin').value = ''; document.getElementById('priceMax').value = '';
+    document.getElementById('brandFilter').value = ''; document.getElementById('typeFilter').value = ''; document.getElementById('colorFilter').value = '';
+    document.getElementById('searchInput').value = '';
+    renderProducts();
+  });
+  document.getElementById('sortSelect').addEventListener('change', () => renderProducts());
+  document.getElementById('openAddProductBtn').onclick = () => { document.getElementById('productModal').style.display = 'flex'; };
+  document.getElementById('closeModalBtn').onclick = () => { document.getElementById('productModal').style.display = 'none'; };
+  document.getElementById('saveProductBtn').onclick = addNewProduct;
+  document.getElementById('cartIcon').onclick = () => { document.getElementById('cartModal').style.display = 'flex'; updateCartUI(); };
+  document.getElementById('closeCartBtn').onclick = () => { document.getElementById('cartModal').style.display = 'none'; };
+  document.getElementById('clearCartBtn').onclick = () => { cart = []; saveCart(); updateCartUI(); renderProducts(); toast("Զամբյուղը դատարկվեց"); };
+  document.getElementById('homeLink').onclick = (e) => { e.preventDefault(); window.location.href = 'index.html'; };
+  document.getElementById('searchInput').addEventListener('input', () => renderProducts());
+
+  loadCart();
+  renderProducts();
+  window.onclick = (e) => { if(e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+</script>
+</body>
+</html>
