@@ -470,36 +470,12 @@
     </div>
   </div>
 
-  <div class="main-grid">
-    <aside class="filters">
-      <h3><i class="fas fa-sliders-h"></i> Զտիչներ</h3>
-      <div class="filter-group">
-        <label>Գին (դրամ)</label>
-        <div style="display:flex; gap:8px;">
-          <input type="number" id="priceMin" placeholder="Մինչև">
-          <input type="number" id="priceMax" placeholder="Առավելագույնը">
-        </div>
-      </div>
-      <div class="filter-group">
-        <label>Արտադրող / Բրենդ</label>
-        <select id="brandFilter">
-          <option value="">Բոլորը</option>
-          <option>MIPA</option><option>Motip</option><option>Novol</option><option>Bodyline</option><option>3M</option>
-          <option>SATA</option><option>DeVilbiss</option><option>Janser</option><option>Mirka</option>
-        </select>
-      </div>
-      <button class="btn-filter" id="applyFiltersBtn">Կիրառել զտիչներ</button>
-      <button class="btn-filter" id="resetFiltersBtn" style="background:#567d8a; margin-top:10px;">Վերականգնել</button>
-    </aside>
+  
 
     <div class="products-area">
       <div class="products-header">
         <span class="product-count" id="productCount"></span>
-        <select id="sortSelect">
-          <option value="name">Այբբենական կարգ</option>
-          <option value="priceAsc">Գինը ցածրից բարձր</option>
-          <option value="priceDesc">Գինը բարձրից ցածր</option>
-        </select>
+        
       </div>
       <div class="product-grid" id="productsGrid"></div>
     </div>
